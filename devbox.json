@@ -1,0 +1,26 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.10.5/.schema/devbox.schema.json",
+  "packages": [
+    "kubectl@1.29.3",
+    "kind@0.22.0"
+  ],
+  "shell": {
+    "scripts": {
+      "create": [
+        "kind create cluster --config kind.yaml",
+        "kubectl create namespace argocd",
+        "kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v2.10.7/manifests/install.yaml",
+        "echo '\nAlmost there... Finishing installation...'",
+        "kubectl wait -n argocd --for=condition=Ready $(kubectl get pods -n argocd -o=name | grep argocd-server) --timeout=120s",
+        "echo \"\n\nArgoCD installation is ready!\n\n\""
+      ],
+      "connect": [
+        "ARGOCD_PASSWORD=$(kubectl get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' -n argocd | base64 -d)",
+        "echo \"\n\nPlease connect to https://localhost:8000 using 'admin' as username and '$ARGOCD_PASSWORD' as password\n\n\"",
+        "kubectl port-forward service/argocd-server -n argocd 8000:80"
+      ],
+      "app-of-apps": ["kubectl apply -f argocd/applications/app-of-apps.yaml"],
+      "destroy": ["kind delete cluster"]
+    }
+  }
+}

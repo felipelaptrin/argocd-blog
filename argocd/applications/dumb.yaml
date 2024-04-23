@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dumb-app
+  namespace: argocd
+spec:
+  destination:
+    name: in-cluster
+    namespace: default
+  source:
+    path: apps/dumb
+    repoURL: https://github.com/felipelaptrin/argocd-blog.git
+    targetRevision: main
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
