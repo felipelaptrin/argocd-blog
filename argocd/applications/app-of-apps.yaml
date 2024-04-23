@@ -10,7 +10,7 @@ spec:
   source:
     path: argocd-apps/applications/dev
     repoURL: git@github.com:felipelaptrin/argocd-blog.git
-    targetRevision: main
+    targetRevision: feat/app-of-apps
   project: default
   syncPolicy:
     automated:
