@@ -1,3 +1,5 @@
+# argocd-blog
+
 ## ArgoCD Beyond the Basics
 
 ## Run this locally
@@ -34,5 +36,3 @@ devbox run destroy
 ```
 
 To delete the local Kubernetes cluster.
-
-# argocd-blog
