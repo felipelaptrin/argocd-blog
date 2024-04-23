@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dumb-deployment
+  labels:
+    app: dumb
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: dumb
+  template:
+    metadata:
+      labels:
+        app: dumb
+    spec:
+      containers:
+      - name: dumb
+        image: nginx:latest
