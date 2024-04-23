@@ -9,7 +9,7 @@ spec:
     namespace: argocd
   source:
     path: argocd-apps/applications/dev
-    repoURL: git@github.com:felipelaptrin/argocd-blog.git
+    repoURL: https://github.com/felipelaptrin/argocd-blog.git
     targetRevision: feat/app-of-apps
   project: default
   syncPolicy:
