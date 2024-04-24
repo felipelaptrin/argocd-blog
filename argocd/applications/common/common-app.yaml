@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: common
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - env: dev
+        cluster: cluster-dev
+      - env: prod
+        cluster: in-cluster
+  template:
+    metadata:
+      name: '{{env}}-common-app'
+      namespace: argocd
+    spec:
+      project: default
+      destination:
+        name: '{{cluster}}'
+        namespace: default
+      source:
+        path: apps/common
+        repoURL: https://github.com/felipelaptrin/argocd-blog.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
