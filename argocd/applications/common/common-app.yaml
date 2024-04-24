@@ -12,9 +12,10 @@ spec:
         cluster: in-cluster
   template:
     metadata:
-      name: '{{env}}'-common-app
+      name: '{{env}}-common-app'
       namespace: argocd
     spec:
+      project: default
       destination:
         server: '{{cluster}}'
         namespace: default
