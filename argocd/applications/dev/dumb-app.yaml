@@ -10,7 +10,7 @@ spec:
   source:
     path: apps/dumb
     repoURL: https://github.com/felipelaptrin/argocd-blog.git
-    targetRevision: main
+    targetRevision: feat/multi-cluster
   project: default
   syncPolicy:
     automated:
