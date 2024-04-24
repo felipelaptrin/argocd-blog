@@ -8,6 +8,7 @@
   "shell": {
     "scripts": {
       "create": [
+        "echo 'This might took a while to finish... (1 - 2 minutes)'\n",
         "echo '\nCreating first cluster (dev)...\n'",
         "kind create cluster --config kind.yaml --name cluster-dev",
         "echo '\nCreating second cluster (prod)...\n'",
@@ -35,7 +36,7 @@
         "kubectl apply -f argocd/cluster/dev",
         "kubectl config use-context kind-cluster-prod"
       ],
-      "destroy": ["kind delete clusters"]
+      "destroy": ["kind delete clusters cluster-dev cluster-prod"]
     }
   }
 }
