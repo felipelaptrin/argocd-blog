@@ -23,7 +23,7 @@ spec:
       source:
         path: apps/common
         repoURL: https://github.com/felipelaptrin/argocd-blog.git
-        targetRevision: feat/generator
+        targetRevision: main
       syncPolicy:
         automated:
           prune: true
