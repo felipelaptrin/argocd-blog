@@ -1,6 +1,10 @@
 #!/bin/bash
 set -eou pipefail
 
+# Description: This script replace the dummy values of the "argocd/cluster/prod/secret.yaml" file
+#              with the correct values of the cluster
+
+
 PROD_SECRET_YAML_FILE_PATH="argocd/cluster/prod/secret.yaml"
 
 kubectl config use-context kind-cluster-dev
