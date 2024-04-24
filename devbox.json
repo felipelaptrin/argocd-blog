@@ -2,12 +2,17 @@
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.10.5/.schema/devbox.schema.json",
   "packages": [
     "kubectl@1.29.3",
-    "kind@0.22.0"
+    "kind@0.22.0",
+    "yq@3.4.1"
   ],
   "shell": {
     "scripts": {
       "create": [
-        "kind create cluster --config kind.yaml",
+        "echo 'This might took a while to finish... (1 - 2 minutes)'\n",
+        "echo '\nCreating first cluster (dev)...\n'",
+        "kind create cluster --config kind.yaml --name cluster-dev",
+        "echo '\nCreating second cluster (prod)...\n'",
+        "kind create cluster --config kind.yaml --name cluster-prod",
         "kubectl create namespace argocd",
         "kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v2.10.7/manifests/install.yaml",
         "echo '\nAlmost there... Finishing installation...'",
@@ -19,8 +24,19 @@
         "echo \"\n\nPlease connect to https://localhost:8000 using 'admin' as username and '$ARGOCD_PASSWORD' as password\n\n\"",
         "kubectl port-forward service/argocd-server -n argocd 8000:80"
       ],
-      "app-of-apps": ["kubectl apply -f argocd/applications/app-of-apps.yaml"],
-      "destroy": ["kind delete cluster"]
+      "app-of-apps": [
+        "kubectl config use-context kind-cluster-prod",
+        "kubectl apply -f argocd/applications/prod/app-of-apps.yaml"
+      ],
+      "multi-cluster": [
+        "kubectl config use-context kind-cluster-dev",
+        "kubectl apply -f argocd/cluster/dev",
+        "bash scripts/multi-cluster.sh",
+        "kubectl config use-context kind-cluster-prod",
+        "kubectl apply -f argocd/cluster/prod",
+        "kubectl apply -f argocd/applications/dev"
+      ],
+      "destroy": ["kind delete clusters cluster-dev cluster-prod"]
     }
   }
 }
