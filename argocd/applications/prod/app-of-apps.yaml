@@ -10,7 +10,7 @@ spec:
   source:
     path: argocd/applications/prod
     repoURL: https://github.com/felipelaptrin/argocd-blog.git
-    targetRevision: feat/multi-cluster
+    targetRevision: main
   project: default
   syncPolicy:
     automated:
