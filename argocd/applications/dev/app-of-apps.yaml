@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: dumb-app
+  name: dev-app-of-apps-applications
   namespace: argocd
 spec:
   destination:
     name: in-cluster
-    namespace: default
+    namespace: argocd
   source:
-    path: apps/dumb
+    path: argocd/applications
     repoURL: https://github.com/felipelaptrin/argocd-blog.git
     targetRevision: main
   project: default

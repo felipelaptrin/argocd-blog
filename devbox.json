@@ -7,7 +7,10 @@
   "shell": {
     "scripts": {
       "create": [
-        "kind create cluster --config kind.yaml",
+        "echo '\nCreating first cluster...\n'",
+        "kind create cluster --config kind.yaml --name cluster-dev",
+        "echo '\nCreating second cluster...\n'",
+        "kind create cluster --config kind.yaml --name cluster-prod",
         "kubectl create namespace argocd",
         "kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v2.10.7/manifests/install.yaml",
         "echo '\nAlmost there... Finishing installation...'",
@@ -20,7 +23,7 @@
         "kubectl port-forward service/argocd-server -n argocd 8000:80"
       ],
       "app-of-apps": ["kubectl apply -f argocd/applications/app-of-apps.yaml"],
-      "destroy": ["kind delete cluster"]
+      "destroy": ["kind delete clusters"]
     }
   }
 }
