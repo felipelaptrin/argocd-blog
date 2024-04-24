@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: common
+  namespace: argocd
 spec:
   generators:
   - list:
@@ -17,7 +18,7 @@ spec:
     spec:
       project: default
       destination:
-        server: '{{cluster}}'
+        name: '{{cluster}}'
         namespace: default
       source:
         path: apps/dumb
