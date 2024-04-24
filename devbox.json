@@ -20,6 +20,7 @@
         "echo \"\n\nArgoCD installation is ready!\n\n\""
       ],
       "connect": [
+        "kubectl config use-context kind-cluster-prod",
         "ARGOCD_PASSWORD=$(kubectl get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' -n argocd | base64 -d)",
         "echo \"\n\nPlease connect to https://localhost:8000 using 'admin' as username and '$ARGOCD_PASSWORD' as password\n\n\"",
         "kubectl port-forward service/argocd-server -n argocd 8000:80"
@@ -35,6 +36,10 @@
         "kubectl config use-context kind-cluster-prod",
         "kubectl apply -f argocd/cluster/prod",
         "kubectl apply -f argocd/applications/dev"
+      ],
+      "applicationset": [
+        "kubectl config use-context kind-cluster-prod",
+        "kubectl apply -f argocd/applications/common"
       ],
       "destroy": ["kind delete clusters cluster-dev cluster-prod"]
     }

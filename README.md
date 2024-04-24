@@ -55,3 +55,9 @@ devbox run multi-cluster
 ```
 
 It creates all the Kubernetes resources that allows ArgoCD to deploy to an external cluster (dev cluster).
+
+### ApplicationSet
+
+```sh
+devbox run applicationset
+```
