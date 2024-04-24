@@ -19,7 +19,7 @@ devbox shell
 devbox run create
 ```
 
-This will create the local Kubernetes cluster using Kind and install ArgoCD in the local cluster.
+This will create two local Kubernetes clusters using Kind and install ArgoCD in the local cluster. The cluster called `prod` is the cluster that ArgoCD will be installed and the `dev` cluster is the external cluster.
 
 3) Connect to the ArgoCD
 
@@ -36,3 +36,22 @@ devbox run destroy
 ```
 
 To delete the local Kubernetes cluster.
+
+## Run the experiments
+
+### App of Apps
+
+```sh
+devbox run app-of-apps
+```
+
+
+This will create the app of apps pattern.
+
+### Multi-Cluster
+
+```sh
+devbox run multi-cluster
+```
+
+It creates all the Kubernetes resources that allows ArgoCD to deploy to an external cluster (dev cluster).
