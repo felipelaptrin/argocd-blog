@@ -34,7 +34,7 @@
         "bash scripts/multi-cluster.sh",
         "kubectl config use-context kind-cluster-prod",
         "kubectl apply -f argocd/cluster/prod",
-        "kubectl apply -f argocd/applications/prod"
+        "kubectl apply -f argocd/applications/dev"
       ],
       "destroy": ["kind delete clusters cluster-dev cluster-prod"]
     }
