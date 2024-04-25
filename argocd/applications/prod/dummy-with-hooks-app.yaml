@@ -10,5 +10,5 @@ spec:
   source:
     path: apps/dummy-with-hooks
     repoURL: https://github.com/felipelaptrin/argocd-blog.git
-    targetRevision: feat/hooks
+    targetRevision: main
   project: default
