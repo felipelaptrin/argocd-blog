@@ -61,3 +61,7 @@ It creates all the Kubernetes resources that allows ArgoCD to deploy to an exter
 ```sh
 devbox run applicationset
 ```
+
+### Hooks and sync wave
+
+When you run the app of apps command (`devbox run app-of-apps`) it automatically creates the example of an application using hooks and sync waves. Notice that this application does not have auto sync, so you can go sync manual on the ArgoCD UI and check the behavior.

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dummy-with-hooks-deployment
+  labels:
+    app: dummy-with-hooks
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dummy-with-hooks
+  template:
+    metadata:
+      labels:
+        app: dummy-with-hooks
+    spec:
+      containers:
+      - name: dummy-with-hooks
+        image: nginx:latest
