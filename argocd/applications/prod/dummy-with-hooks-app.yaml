@@ -6,7 +6,7 @@ metadata:
 spec:
   destination:
     name: in-cluster
-    namespace: default
+    namespace: dummy
   source:
     path: apps/dummy-with-hooks
     repoURL: https://github.com/felipelaptrin/argocd-blog.git
